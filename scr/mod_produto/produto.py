@@ -7,6 +7,10 @@ bp_produto = Blueprint(
 """ rotas dos formulários """
 
 
-@bp_produto.route("/")
+@bp_produto.route("/", methods=['GET', 'POST'])
 def formListaProduto():
     return render_template("formListaProduto.html"), 200
+
+@bp_produto.route('/form-produto/', methods=['GET', 'POST'])
+def formProduto():
+    return render_template('formProduto.html')

@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+{% extends "base.html" %}
 
-    <head>
-        <meta charset="UTF-8">
-        <title>Produtos</title>
-    </head>
-    
-    <body>
-        <h1>Rota da página de Produtos da nossa WEB APP</h1>
-        <h1>Uso de render_template</h1>
-        <h1>Luís Eduardo Bernardino Luz</h1>
-    </body>
+{% block title %}Produto{% endblock %}
 
-</html>
+{% block content %}
+<form action="{{ url_for('produto.formProduto') }}" method="POST">
+    <h1>Produtos</h1>
+    <button type="submit" name="formNovo">Novo Produto</button>
+</form>
+
+
+{% endblock %}

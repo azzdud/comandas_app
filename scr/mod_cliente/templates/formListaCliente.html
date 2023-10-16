@@ -1,15 +1,13 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+{% extends "base.html" %}
 
-    <head>
-        <meta charset="UTF-8">
-        <title>Clientes</title>
-    </head>
-    
-    <body>
-        <h1>Rota da página de Clientes da nossa WEB APP</h1>
-        <h1>Uso de render_template</h1>
-        <h1>Luís Eduardo Bernardino Luz</h1>
-    </body>
+{% block title %}Cliente{% endblock %}
 
-</html>
+{% block content %}
+
+<form action="{{ url_for('cliente.formCliente') }}" method="POST">
+    <h1>Cliente</h1>
+    <p class="important">Seja bem vindo!</p>
+    <button type="submit" name="formNovo">Novo Cliente</button>
+</form>
+
+{% endblock %}

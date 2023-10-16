@@ -1,15 +1,9 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+{% extends "base.html" %}
 
-    <head>
-        <meta charset="UTF-8">
-        <title>Página Principal</title>
-    </head>
-    
-    <body>
-        <h1>Rota da Página Principal da nossa WEB APP</h1>
-        <h1>Uso de render_template</h1>
-        <h1>Luís Eduardo Bernardino Luz</h1>
-    </body>
+{% block title %}Página Inicial{% endblock %}
 
-</html>
+{% block content %}
+<h1>Página Inicial</h1>
+<p class="important">Seja bem vindo!</p>
+
+{% endblock %}
