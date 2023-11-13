@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect, url_for
 import requests
 import base64
 from settings import HEADERS_API, ENDPOINT_PRODUTO
@@ -41,7 +41,8 @@ def insert():
         response = requests.post(ENDPOINT_PRODUTO, headers=HEADERS_API, json=payload)
         result = response.json()
 
-        return render_template("formListaProduto.html", msg=result[0])
+        # return render_template('formListaProduto.html', msg=result[0])
+        return redirect(url_for("produto.formListaProduto", msg=result[0]))
 
     except Exception as e:
         return render_template("formListaProduto.html", msgErro=e.args[0])

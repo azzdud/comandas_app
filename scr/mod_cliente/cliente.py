@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect, url_for
 import requests
 from settings import HEADERS_API, ENDPOINT_CLIENTE
 from funcoes import Funcoes
@@ -62,7 +62,8 @@ def insert():
         if response.status_code != 200 or result[1] != 200:
             raise Exception(result[0])
 
-        return render_template("formListaCliente.html", msg=result[0])
+        # return render_template('formListaCliente.html', msg=result[0])
+        return redirect(url_for("cliente.formListaCliente", msg=result[0]))
 
     except Exception as e:
         return render_template("formListaCliente.html", msgErro=e.args[0])
