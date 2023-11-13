@@ -3,10 +3,37 @@
 {% block title %}Produto{% endblock %}
 
 {% block content %}
-<form action="{{ url_for('produto.formProduto') }}" method="POST">
-    <h1>Produtos</h1>
-    <button type="submit" name="formNovo">Novo Produto</button>
-</form>
+    <form action="{{ url_for('produto.formProduto') }}" method="POST">
+        <h1>Produtos</h1>
+        <button type="submit" name="formNovo">Novo Produto</button>
+    </form>
 
+    <table>
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Foto</th>
+                <th scope="col">Valor Unitário</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% if result %}
+            {% for row in result %}
+            <tr>
+                <th scope="row">{{ row['id_produto'] }}</th>
+                <td>{{ row['nome'] }}</td>
+                <td>{{ row['descricao'] }}</td>
+                <td> <img src="{{ row['foto'] }}" width="100"></td>
+                <td>{{ row['valor_unit'] }}</td>
+                <td><i class="fas fa-edit"></i></td>
+                <td><i class="fas fa-trash"></i></td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
 
 {% endblock %}

@@ -1,4 +1,5 @@
 from flask import Flask
+import requests
 
 # import blueprint criado
 from mod_funcionario.funcionario import bp_funcionario
