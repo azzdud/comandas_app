@@ -1,72 +1,69 @@
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>{% block title %}👨‍🍳{% endblock %} - azzdud</title>
+    
+    <style>.important {color: #6495ED;}</style>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.3.2-dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome-free-6.4.2-web/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='sweetalert2/sweetalert2.min.css') }}">
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+
+<body>
+    {% block menu %}
+    <div class="1">
+        <ul>
+            <li><a href="{{ url_for('index.formIndex') }}"><i class="fa-solid fa-house"></i>Home</a></li>
+            <li><a href="{{ url_for('funcionario.formListaFuncionario') }}"><i class="fa-solid fa-circle-user"></i>Funcionário</a></li>
+            <li><a href="{{ url_for('cliente.formListaCliente') }}"><i class="fa-regular fa-handshake"></i>Cliente</a></li>
+            <li><a href="{{ url_for('produto.formListaProduto') }}"><i class="fa-solid fa-box"></i>Produto</a></li>
+        </ul>
+    </div>
+    {% endblock %}
+
+    <div class="container">
+        {% block content %}{% endblock %}
         
-        <title>{% block title %}{% endblock %} - azzdud</title>{% block style %}{% endblock %}
-
-        <style>.important {color: #6495ED;}</style>
-
-        <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.3.2-dist/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome-free-6.4.2-web/css/all.min.css') }}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='sweetalert2/sweetalert2.min.css') }}">
-        <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-
-    </head>
-
-    <body>
-        {% block menu %}
-            <ul>
-                <li><a href="{{ url_for('index.formIndex') }}"><i class="fa-solid fa-house"></i>Home</a></li>
-                <li><a href="{{ url_for('funcionario.formListaFuncionario') }}"><i class="fa-solid fa-circle-user"></i>Funcionário</a></li>
-                <li><a href="{{ url_for('cliente.formListaCliente') }}"><i class="fa-regular fa-handshake"></i>Cliente</a></li>
-                <li><a href="{{ url_for('produto.formListaProduto') }}"><i class="fa-solid fa-box"></i>Produto</a></li>
-            </ul>
+        {% block footer %}
+        &copy; Copyright 2023 by <a href="http://127.0.0.1:5000/">azzdud</a>.
         {% endblock %}
 
-        <div class="container">
-            {% block content %}{% endblock %}
-            
-            {% block footer %}
-        </div>
-        &copy; Copyright 2023 by <a href="http://127.0.0.1:5000/">azzdud</a>.
-
-        <!-- redirect - request.args.get('msg' ou 'msgErro') -->
-        {% if request.args.get('msg'): %}
+        {% if request.args.get('msg') %}
+        <script src="{{ url_for('static', filename='sweetalert2/sweetalert2.all.min.js') }}"></script>
         <script>
             Swal.fire("Sucesso", "{{ request.args.get('msg') }}", "success");
         </script>
-
-        {% elif request.args.get('msgErro'): %}
+        {% elif request.args.get('msgErro') %}
+        <script src="{{ url_for('static', filename='sweetalert2/sweetalert2.all.min.js') }}"></script>
         <script>
             Swal.fire("Erro", "{{ request.args.get('msgErro') }}", "error");
         </script>
-
-        <!-- render_template - msg ou msgErro -->
-        {% elif msg: %}
+        {% elif msg %}
+        <script src="{{ url_for('static', filename='sweetalert2/sweetalert2.all.min.js') }}"></script>
         <script>
             Swal.fire("ID {{ msg.id }}, {{ msg.msg }} ", "{{ msg }}", "success");
         </script>
-
-        {% elif msgErro: %}
+        {% elif msgErro %}
+        <script src="{{ url_for('static', filename='sweetalert2/sweetalert2.all.min.js') }}"></script>
         <script>
             Swal.fire("{{ msgErro.msg if msgErro.msg else 'Erro' }}", "{{ msgErro }}", "error");
         </script>
-
         {% endif %}
+    </div>
 
-        {% endblock %}
-
-        {% block js %}{% endblock %}
-
-        
-
-        <script src="{{ url_for('static', filename='jquery-3.7.1.js') }}"></script>
-        <script src="{{ url_for('static', filename='jquery.maskedinput.min.js') }}"></>
-        <script src="{{ url_for('static', filename='bootstrap-5.3.2-dist/js/bootstrap.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='fontawesome-free-6.4.2-web/js/all.js') }}"></script>
-        <script src="{{ url_for('static', filename='sweetalert2/sweetalert2.all.min.js') }}"></script>
-
-    </body>
+    {% block js %}
+    <script src="{{ url_for('static', filename='jquery-3.7.1.js') }}"></script>
+    <script src="{{ url_for('static', filename='jquery.maskedinput.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap-5.3.2-dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='fontawesome-free-6.4.2-web/js/all.js') }}"></script>
+    <script src="{{ url_for('static', filename='sweetalert2/sweetalert2.all.min.js') }}"></script>
+    {% endblock %}
+</body>
 </html>
